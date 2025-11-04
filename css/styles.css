@@ -1,10 +1,15 @@
 :root {
-  --dark-bg: #2c2c2c;
-  --light-bg: #ffffff;
-  --dark-text: #ffffff;
-  --light-text: #2c2c2c;
+  /* Brand colors */
+  --dark-bg: #252628;          /* Obsidian Grey */
+  --light-bg: #f8f8f8;         /* Soft Light Grey */
+  --dark-text: #f7f7f7;        /* Soft White for Dark Mode */
+  --light-text: #222222;       /* Deep Charcoal for Light Mode */
+  
+  /* Accent colors (Red Coral tone) */
   --accent: #ff5e57;
   --accent-hover: #ff3e2a;
+
+  /* Supporting */
   --main-transition: all 0.2s ease-in-out;
   --font-clean: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
