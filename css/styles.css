@@ -1,12 +1,12 @@
 :root {
-  /* Brand Palette — Crimson Noir */
-  --dark-bg: #1a0f0f;          /* Deep maroon-black */
-  --light-bg: #faf6f5;         /* Soft rose white */
-  --dark-text: #f6eeee;        /* Warm white */
-  --light-text: #1a0f0f;       /* Deep maroon-black */
-  --accent: #8b1e2d;           /* Maroon red */
-  --accent-hover: #a52438;     /* Brighter maroon red */
-  --dot-inactive: #3b2123;     /* Dark red tone for inactive logo dots */
+  /* Crimson Abyss Theme */
+  --dark-bg: #120909;          /* Deep maroon-black */
+  --light-bg: #f8f3f3;         /* Gentle off-white */
+  --dark-text: #f5eaea;        /* Warm soft white */
+  --light-text: #1a0d0d;       /* Deep maroon-black */
+  --accent: #751a1a;           /* True maroon */
+  --accent-hover: #9e2525;     /* Slightly brighter maroon */
+  --dot-inactive: #120909;     /* Matches background perfectly */
   --main-transition: all 0.2s ease-in-out;
   --font-clean: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -31,7 +31,7 @@ html, body {
 
 /* ===== THEME ===== */
 
-/* Dark mode default */
+/* System dark */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) body {
     background: var(--dark-bg);
@@ -48,7 +48,7 @@ html, body {
   }
 }
 
-/* Light mode default */
+/* System light */
 @media (prefers-color-scheme: light) {
   html:not([data-theme="dark"]) body {
     background: var(--light-bg);
@@ -58,10 +58,10 @@ html, body {
     background: var(--light-text);
   }
   html:not([data-theme="dark"]) .dot {
-    background: #e5d6d6;
+    background: #e9dada;
   }
   html:not([data-theme="dark"]) .email-text {
-    color: #664;
+    color: #665;
   }
 }
 
@@ -89,10 +89,10 @@ html[data-theme="light"] .dot.active {
   background: var(--light-text);
 }
 html[data-theme="light"] .dot {
-  background: #e5d6d6;
+  background: #e9dada;
 }
 html[data-theme="light"] .email-text {
-  color: #664;
+  color: #665;
 }
 
 /* ===== LAYOUT ===== */
@@ -241,7 +241,7 @@ ul li:nth-child(4)::after {
   display: inline-block;
   width: 40px;
   height: 20px;
-  background-color: #663;
+  background-color: #551010;
   border-radius: 10px;
   position: relative;
   cursor: pointer;
