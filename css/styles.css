@@ -1,17 +1,17 @@
 :root {
-  /* Brand Palette */
-  --dark-bg: #252628;          /* Obsidian Grey */
-  --light-bg: #f8f8f8;         /* Soft Light Grey */
-  --dark-text: #f7f7f7;        /* Soft White for Dark Mode */
-  --light-text: #222222;       /* Deep Charcoal for Light Mode */
-  --accent: #ff5e57;           /* Coral Red */
-  --accent-hover: #ff3e2a;
-  --dot-inactive: #3a3b3d;     /* Inactive logo dot color */
+  /* Brand Palette — Crimson Noir */
+  --dark-bg: #1a0f0f;          /* Deep maroon-black */
+  --light-bg: #faf6f5;         /* Soft rose white */
+  --dark-text: #f6eeee;        /* Warm white */
+  --light-text: #1a0f0f;       /* Deep maroon-black */
+  --accent: #8b1e2d;           /* Maroon red */
+  --accent-hover: #a52438;     /* Brighter maroon red */
+  --dot-inactive: #3b2123;     /* Dark red tone for inactive logo dots */
   --main-transition: all 0.2s ease-in-out;
   --font-clean: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Reset & Base */
+/* Reset */
 * {
   box-sizing: border-box;
 }
@@ -29,9 +29,9 @@ html, body {
   transition: var(--main-transition);
 }
 
-/* ===== THEME HANDLING ===== */
+/* ===== THEME ===== */
 
-/* System dark */
+/* Dark mode default */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) body {
     background: var(--dark-bg);
@@ -44,11 +44,11 @@ html, body {
     background: var(--dot-inactive);
   }
   html:not([data-theme="light"]) .email-text {
-    color: #bbb;
+    color: #cbb;
   }
 }
 
-/* System light */
+/* Light mode default */
 @media (prefers-color-scheme: light) {
   html:not([data-theme="dark"]) body {
     background: var(--light-bg);
@@ -58,10 +58,10 @@ html, body {
     background: var(--light-text);
   }
   html:not([data-theme="dark"]) .dot {
-    background: #ddd;
+    background: #e5d6d6;
   }
   html:not([data-theme="dark"]) .email-text {
-    color: #666;
+    color: #664;
   }
 }
 
@@ -77,7 +77,7 @@ html[data-theme="dark"] .dot {
   background: var(--dot-inactive);
 }
 html[data-theme="dark"] .email-text {
-  color: #bbb;
+  color: #cbb;
 }
 
 /* Explicit Light */
@@ -89,10 +89,10 @@ html[data-theme="light"] .dot.active {
   background: var(--light-text);
 }
 html[data-theme="light"] .dot {
-  background: #ddd;
+  background: #e5d6d6;
 }
 html[data-theme="light"] .email-text {
-  color: #666;
+  color: #664;
 }
 
 /* ===== LAYOUT ===== */
@@ -148,7 +148,7 @@ a {
   background-color: var(--accent);
   color: #fff;
   border: none;
-  border-radius: 1.5px;
+  border-radius: 3px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: var(--main-transition);
@@ -181,7 +181,7 @@ ul li a:hover {
   color: var(--accent-hover);
 }
 
-/* Dots after links */
+/* Dots between links */
 ul li:nth-child(1)::after,
 ul li:nth-child(2)::after,
 ul li:nth-child(3)::after {
@@ -215,7 +215,7 @@ ul li:nth-child(4)::after {
   pointer-events: all;
 }
 
-/* Email */
+/* Email container */
 .email-container {
   display: flex;
   flex-direction: column;
@@ -227,7 +227,7 @@ ul li:nth-child(4)::after {
   cursor: pointer;
 }
 
-/* Theme switcher */
+/* Theme Switcher */
 .theme-switcher {
   display: flex;
   justify-content: center;
@@ -241,7 +241,7 @@ ul li:nth-child(4)::after {
   display: inline-block;
   width: 40px;
   height: 20px;
-  background-color: #666;
+  background-color: #663;
   border-radius: 10px;
   position: relative;
   cursor: pointer;
@@ -265,7 +265,7 @@ ul li:nth-child(4)::after {
   left: 22px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* Responsive */
 @media (max-width: 768px) {
   ul {
     justify-content: center;
@@ -285,7 +285,6 @@ ul li:nth-child(4)::after {
     content: none;
   }
 }
-
 @media (max-width: 480px) {
   ul li {
     width: 40%;
