@@ -1,19 +1,17 @@
 :root {
-  /* Brand colors */
+  /* Brand Palette */
   --dark-bg: #252628;          /* Obsidian Grey */
   --light-bg: #f8f8f8;         /* Soft Light Grey */
   --dark-text: #f7f7f7;        /* Soft White for Dark Mode */
   --light-text: #222222;       /* Deep Charcoal for Light Mode */
-  
-  /* Accent colors (Red Coral tone) */
-  --accent: #ff5e57;
+  --accent: #ff5e57;           /* Coral Red */
   --accent-hover: #ff3e2a;
-
-  /* Supporting */
+  --dot-inactive: #3a3b3d;     /* Inactive logo dot color */
   --main-transition: all 0.2s ease-in-out;
   --font-clean: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
+/* Reset & Base */
 * {
   box-sizing: border-box;
 }
@@ -31,7 +29,9 @@ html, body {
   transition: var(--main-transition);
 }
 
-/* System default theme */
+/* ===== THEME HANDLING ===== */
+
+/* System dark */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) body {
     background: var(--dark-bg);
@@ -40,14 +40,15 @@ html, body {
   html:not([data-theme="light"]) .dot.active {
     background: var(--dark-text);
   }
-  html:not([data-theme="light"]) ul li::after {
-    color: var(--dark-text);
+  html:not([data-theme="light"]) .dot {
+    background: var(--dot-inactive);
   }
   html:not([data-theme="light"]) .email-text {
     color: #bbb;
   }
 }
 
+/* System light */
 @media (prefers-color-scheme: light) {
   html:not([data-theme="dark"]) body {
     background: var(--light-bg);
@@ -56,57 +57,45 @@ html, body {
   html:not([data-theme="dark"]) .dot.active {
     background: var(--light-text);
   }
-  html:not([data-theme="dark"]) ul li::after {
-    color: var(--light-text);
-  }
-  html:not([data-theme="dark"]) h1,
-  html:not([data-theme="dark"]) a {
-    color: var(--light-text);
+  html:not([data-theme="dark"]) .dot {
+    background: #ddd;
   }
   html:not([data-theme="dark"]) .email-text {
     color: #666;
   }
 }
 
-/* Explicit theme overrides */
+/* Explicit Dark */
 html[data-theme="dark"] body {
   background: var(--dark-bg);
   color: var(--dark-text);
 }
-
 html[data-theme="dark"] .dot.active {
   background: var(--dark-text);
 }
-
-html[data-theme="dark"] ul li::after {
-  color: var(--dark-text);
+html[data-theme="dark"] .dot {
+  background: var(--dot-inactive);
 }
-
 html[data-theme="dark"] .email-text {
   color: #bbb;
 }
 
+/* Explicit Light */
 html[data-theme="light"] body {
   background: var(--light-bg);
   color: var(--light-text);
 }
-
 html[data-theme="light"] .dot.active {
   background: var(--light-text);
 }
-
-html[data-theme="light"] ul li::after {
-  color: var(--light-text);
+html[data-theme="light"] .dot {
+  background: #ddd;
 }
-
-html[data-theme="light"] h1,
-html[data-theme="light"] a {
-  color: var(--light-text);
-}
-
 html[data-theme="light"] .email-text {
   color: #666;
 }
+
+/* ===== LAYOUT ===== */
 
 .wrapper {
   display: flex;
@@ -135,7 +124,7 @@ html[data-theme="light"] .email-text {
 .dot {
   width: 12px;
   height: 12px;
-  background: transparent;
+  background: var(--dot-inactive);
 }
 
 h1 {
@@ -165,7 +154,6 @@ a {
   transition: var(--main-transition);
   margin-bottom: 0.75rem;
 }
-
 .email:hover {
   background-color: var(--accent-hover);
 }
@@ -185,17 +173,15 @@ ul {
 ul li {
   position: relative;
 }
-
 ul li a {
   text-decoration: underline;
   transition: color 0.3s ease;
 }
-
 ul li a:hover {
   color: var(--accent-hover);
 }
 
-/* Desktop: Add dots after github, telegram, twitter */
+/* Dots after links */
 ul li:nth-child(1)::after,
 ul li:nth-child(2)::after,
 ul li:nth-child(3)::after {
@@ -204,12 +190,11 @@ ul li:nth-child(3)::after {
   right: -1.25rem;
   font-size: 1rem;
 }
-
-/* Remove dot after discord */
 ul li:nth-child(4)::after {
   content: none;
 }
 
+/* Notification */
 .notification {
   position: fixed;
   bottom: 10px;
@@ -225,40 +210,33 @@ ul li:nth-child(4)::after {
   transition: opacity 0.3s ease;
   z-index: 12;
 }
-
 .notification.show {
   opacity: 1;
   pointer-events: all;
 }
 
+/* Email */
 .email-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
 }
-
 .email-text {
   font-size: 1rem;
   cursor: pointer;
 }
 
-#username {
-  cursor: pointer;
-}
-
-/* Theme switcher styling */
+/* Theme switcher */
 .theme-switcher {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1.25rem;
 }
-
 .theme-toggle {
   display: none;
 }
-
 .theme-toggle + label {
   display: inline-block;
   width: 40px;
@@ -269,7 +247,6 @@ ul li:nth-child(4)::after {
   cursor: pointer;
   transition: var(--main-transition);
 }
-
 .theme-toggle + label::after {
   content: '';
   position: absolute;
@@ -281,47 +258,38 @@ ul li:nth-child(4)::after {
   left: 2px;
   transition: var(--main-transition);
 }
-
 .theme-toggle:checked + label {
   background-color: var(--accent);
 }
-
 .theme-toggle:checked + label::after {
   left: 22px;
 }
 
-/* Mobile Layout: 2 links per row, closer together */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   ul {
     justify-content: center;
     gap: 1rem;
   }
-
   ul li {
     width: 40%;
     margin-bottom: 1rem;
   }
-
-  /* Dots only after github and twitter */
   ul li:nth-child(1)::after,
   ul li:nth-child(3)::after {
     content: "•";
     right: -0.75rem;
   }
-
-  /* Remove dots after telegram and discord */
   ul li:nth-child(2)::after,
   ul li:nth-child(4)::after {
     content: none;
   }
 }
 
-/* Further adjustments for very small screens */
 @media (max-width: 480px) {
   ul li {
     width: 40%;
   }
-
   h1 {
     font-size: 1.25rem;
   }
