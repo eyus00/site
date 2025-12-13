@@ -1,51 +1,52 @@
-// Set initial theme based on system preference
-if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  document.documentElement.setAttribute("data-theme", "dark");
+const root = document.documentElement;
+const themeToggle = document.getElementById("theme-toggle");
+const username = document.getElementById("username");
+const emailText = document.getElementById("email-text");
+const notification = document.getElementById("notification");
+
+/* ===============================
+   THEME HANDLING
+================================ */
+
+// Load saved theme or fall back to system preference
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme) {
+  root.setAttribute("data-theme", savedTheme);
+  themeToggle.checked = savedTheme === "light";
 } else {
-  document.documentElement.setAttribute("data-theme", "light");
-  document.getElementById("theme-toggle").checked = true;
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const systemTheme = prefersDark ? "dark" : "light";
+
+  root.setAttribute("data-theme", systemTheme);
+  themeToggle.checked = systemTheme === "light";
 }
 
-const username = document.getElementById('username');
-const emailText = document.getElementById('email-text');
-const notification = document.getElementById('notification');
-const themeToggle = document.getElementById('theme-toggle');
-const spotifyToggle = document.getElementById('spotify-toggle');
-const spotifyPlayer = document.querySelector('.spotify-player');
+// Save manual toggle
+themeToggle.addEventListener("change", () => {
+  const newTheme = themeToggle.checked ? "light" : "dark";
+  root.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+});
 
-username.addEventListener('click', () => {
+/* ===============================
+   CLIPBOARD HANDLING
+================================ */
+
+function showNotification(text) {
+  notification.textContent = text;
+  notification.classList.add("show");
+  setTimeout(() => notification.classList.remove("show"), 2000);
+}
+
+username.addEventListener("click", () => {
   navigator.clipboard.writeText(username.textContent)
-    .then(() => {
-      notification.textContent = 'Username copied to clipboard!';
-      notification.classList.add('show');
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 2000);
-    })
-    .catch(err => {
-      console.error('Clipboard copy failed for username:', err);
-    });
+    .then(() => showNotification("Username copied to clipboard!"))
+    .catch(console.error);
 });
 
-emailText.addEventListener('click', () => {
+emailText.addEventListener("click", () => {
   navigator.clipboard.writeText(emailText.textContent)
-    .then(() => {
-      notification.textContent = 'Email copied to clipboard!';
-      notification.classList.add('show');
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 2000);
-    })
-    .catch(err => {
-      console.error('Clipboard copy failed for email:', err);
-    });
-});
-
-themeToggle.addEventListener('change', () => {
-  document.documentElement.setAttribute('data-theme', themeToggle.checked ? 'light' : 'dark');
-});
-
-spotifyToggle.addEventListener('click', () => {
-  spotifyPlayer.classList.toggle('hidden');
-  spotifyToggle.textContent = spotifyPlayer.classList.contains('hidden') ? 'show' : 'hide';
+    .then(() => showNotification("Email copied to clipboard!"))
+    .catch(console.error);
 });
