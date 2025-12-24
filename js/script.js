@@ -12,24 +12,22 @@ const favicon = document.getElementById("favicon");
    2. System mode (if no saved preference)
 ================================ */
 
-const lightFavicon32 = "media/2_32.png";  // light logo for dark theme
-const lightFavicon180 = "media/2_180.png";
-const darkFavicon32 = "media/1_32.png";   // dark logo for light theme
-const darkFavicon180 = "media/1_180.png";
+const lightLogo = "media/1.svg"; // light logo (for dark theme)
+const darkLogo = "media/2.svg";  // dark logo (for light theme)
+
+// PNG favicons
+const lightFavicon = "media/1.png"; // for dark theme
+const darkFavicon = "media/2.png";  // for light theme
 
 function updateTheme(theme) {
   root.setAttribute("data-theme", theme);
 
-  // Update favicon
-  favicon.href = theme === "light" ? darkFavicon32 : lightFavicon32;
-
-  // Update Apple touch icon for iOS
-  const appleTouch = document.querySelector('link[rel="apple-touch-icon"]');
-  if (appleTouch) appleTouch.href = theme === "light" ? darkFavicon180 : lightFavicon180;
-
-  // Show correct logo on page
+  // Update page logo
   document.querySelector(".logo-light-on-dark").style.display = theme === "dark" ? "block" : "none";
   document.querySelector(".logo-dark-on-light").style.display = theme === "light" ? "block" : "none";
+
+  // Update favicon
+  favicon.href = theme === "light" ? darkFavicon : lightFavicon;
 
   // Update switcher
   themeToggle.checked = theme === "light";
@@ -45,7 +43,7 @@ if (savedTheme) {
   updateTheme(systemTheme);
 }
 
-// Save manual toggle
+// Manual toggle
 themeToggle.addEventListener("change", () => {
   const newTheme = themeToggle.checked ? "light" : "dark";
   localStorage.setItem("theme", newTheme);

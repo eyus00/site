@@ -1,6 +1,6 @@
 :root {
-  --dark-bg: #1a0d0d;
-  --light-bg: #f3f3f3;
+  --dark-bg: #1a0d0d; /* updated dark background */
+  --light-bg: #f3f3f3; /* updated light background */
   --dark-text: #f5eaea;
   --light-text: #1a0d0d;
   --accent: #751a1a;
@@ -10,7 +10,9 @@
 }
 
 /* Reset */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 html, body {
   margin: 0;
@@ -26,69 +28,255 @@ html, body {
 }
 
 /* ===== THEME ===== */
+
 @media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) body { background: var(--dark-bg); color: var(--dark-text); }
-  html:not([data-theme="light"]) .email-text { color: #cbb; }
+  html:not([data-theme="light"]) body {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  html:not([data-theme="light"]) .email-text {
+    color: #cbb;
+  }
 }
 
 @media (prefers-color-scheme: light) {
-  html:not([data-theme="dark"]) body { background: var(--light-bg); color: var(--light-text); }
-  html:not([data-theme="dark"]) .email-text { color: #665; }
+  html:not([data-theme="dark"]) body {
+    background: var(--light-bg);
+    color: var(--light-text);
+  }
+  html:not([data-theme="dark"]) .email-text {
+    color: #665;
+  }
 }
 
-html[data-theme="dark"] body { background: var(--dark-bg); color: var(--dark-text); }
-html[data-theme="dark"] .email-text { color: #cbb; }
+html[data-theme="dark"] body {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+html[data-theme="dark"] .email-text {
+  color: #cbb;
+}
 
-html[data-theme="light"] body { background: var(--light-bg); color: var(--light-text); }
-html[data-theme="light"] .email-text { color: #665; }
+html[data-theme="light"] body {
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+html[data-theme="light"] .email-text {
+  color: #665;
+}
 
 /* ===== LAYOUT ===== */
-.wrapper { display: flex; flex-direction: column; align-items: center; gap: 2rem; max-width: 1200px; width: 100%; padding: 1rem; }
-.logo-username-container { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
 
-/* ===== LOGO ===== */
-.logo { position: relative; width: 120px; height: 120px; }
-.logo-img { width: 100%; height: 100%; display: none; }
-html[data-theme="dark"] .logo-light-on-dark { display: block; }
-html[data-theme="dark"] .logo-dark-on-light { display: none; }
-html[data-theme="light"] .logo-dark-on-light { display: block; }
-html[data-theme="light"] .logo-light-on-dark { display: none; }
-
-h1 { font-size: 1.5rem; margin: 0; cursor: pointer; }
-
-/* EMAIL */
-.email { padding: 0.75rem 1.25rem; background-color: var(--accent); color: #fff; border: none; border-radius: 3px; font-size: 1.1rem; cursor: pointer; margin-bottom: 0.75rem; transition: var(--main-transition); }
-.email:hover { background-color: var(--accent-hover); }
-.email-container { display: flex; flex-direction: column; align-items: center; }
-.email-text { cursor: pointer; font-size: 1rem; }
-
-/* SOCIAL LINKS */
-ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-ul li { position: relative; width: auto; margin-bottom: 0; }
-ul li a { text-decoration: underline; font-weight: bold; color: inherit; }
-ul li:nth-child(1)::after, ul li:nth-child(2)::after, ul li:nth-child(3)::after { content: "•"; position: absolute; right: -1.25rem; top: 0; font-size: 1rem; }
-ul li:nth-child(4)::after { content: none; }
-
-/* NOTIFICATION */
-.notification { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); background-color: var(--accent); color: #fff; padding: 0.75rem 1.25rem; border-radius: 5px; opacity: 0; transition: opacity 0.3s ease; }
-.notification.show { opacity: 1; }
-
-/* THEME SWITCHER */
-.theme-switcher { margin-bottom: 1.25rem; }
-.theme-toggle { display: none; }
-.theme-toggle + label { width: 40px; height: 20px; background-color: #551010; border-radius: 10px; position: relative; display: inline-block; cursor: pointer; }
-.theme-toggle + label::after { content: ''; width: 16px; height: 16px; background-color: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: var(--main-transition); }
-.theme-toggle:checked + label { background-color: var(--accent); }
-.theme-toggle:checked + label::after { left: 22px; }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  ul { gap: 1rem; }
-  ul li { width: 40%; margin-bottom: 1rem; }
-  ul li:nth-child(1)::after, ul li:nth-child(3)::after { content: "•"; right: -0.75rem; }
-  ul li:nth-child(2)::after, ul li:nth-child(4)::after { content: none; }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  padding: 1rem;
 }
+
+.logo-username-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* ===== LOGO (120px) ===== */
+
+.logo {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+/* Logo visibility based on theme */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .logo-light-on-dark {
+    display: block;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) .logo-dark-on-light {
+    display: block;
+  }
+}
+
+html[data-theme="dark"] .logo-light-on-dark {
+  display: block;
+}
+html[data-theme="dark"] .logo-dark-on-light {
+  display: none;
+}
+
+html[data-theme="light"] .logo-dark-on-light {
+  display: block;
+}
+html[data-theme="light"] .logo-light-on-dark {
+  display: none;
+}
+
+/* Typography */
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ===== EMAIL ===== */
+.email {
+  padding: 0.75rem 1.25rem;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+  transition: var(--main-transition);
+}
+.email:hover {
+  background-color: var(--accent-hover);
+}
+
+.email-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.email-text {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* ===== SOCIAL LINKS ===== */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+ul li {
+  position: relative;
+  width: auto;
+  margin-bottom: 0;
+}
+
+ul li a {
+  text-decoration: underline;
+  font-weight: bold;
+  color: inherit; /* preserve text color */
+}
+
+/* Dots between links */
+ul li:nth-child(1)::after,
+ul li:nth-child(2)::after,
+ul li:nth-child(3)::after {
+  content: "•";
+  position: absolute;
+  right: -1.25rem;
+  top: 0;
+  font-size: 1rem;
+}
+
+ul li:nth-child(4)::after {
+  content: none;
+}
+
+/* ===== NOTIFICATION ===== */
+.notification {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.notification.show {
+  opacity: 1;
+}
+
+/* ===== THEME SWITCHER ===== */
+.theme-switcher {
+  margin-bottom: 1.25rem;
+}
+
+.theme-toggle {
+  display: none;
+}
+
+.theme-toggle + label {
+  width: 40px;
+  height: 20px;
+  background-color: #551010;
+  border-radius: 10px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.theme-toggle + label::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: var(--main-transition);
+}
+
+.theme-toggle:checked + label {
+  background-color: var(--accent);
+}
+
+.theme-toggle:checked + label::after {
+  left: 22px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  ul {
+    gap: 1rem;
+  }
+  ul li {
+    width: 40%;
+    margin-bottom: 1rem;
+  }
+  ul li:nth-child(1)::after,
+  ul li:nth-child(3)::after {
+    content: "•";
+    right: -0.75rem;
+  }
+  ul li:nth-child(2)::after,
+  ul li:nth-child(4)::after {
+    content: none;
+  }
+}
+
 @media (max-width: 480px) {
-  ul li { width: 40%; }
-  h1 { font-size: 1.25rem; }
+  ul li {
+    width: 40%;
+  }
+  h1 {
+    font-size: 1.25rem;
+  }
 }
