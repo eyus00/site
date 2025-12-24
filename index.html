@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
   <title>eyus00's site</title>
 
-  <!-- Dynamic favicon -->
-  <link id="favicon" rel="icon" type="image/svg+xml" href="media/Dark_Maroon_No_BG.svg">
+  <!-- Adaptive favicon -->
+  <link rel="icon" href="media/favicon-dark.svg" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="media/favicon-light.svg" media="(prefers-color-scheme: light)">
 
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Mulish&family=Playfair+Display&family=Work+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <div class="wrapper">
-
     <div class="theme-switcher">
       <input type="checkbox" id="theme-toggle" class="theme-toggle">
       <label for="theme-toggle"></label>
@@ -22,7 +24,7 @@
     <div class="logo-username-container">
       <img
         id="logo"
-        class="logo"
+        class="logo-img"
         src="media/Dark_Maroon_No_BG.svg"
         alt="eyus00 logo"
       />
@@ -30,9 +32,7 @@
     </div>
 
     <div class="email-container">
-      <button class="email" onclick="window.location.href='mailto:eyus00@duck.com'">
-        email
-      </button>
+      <button class="email" onclick="window.location.href='mailto:eyus00@duck.com'">email</button>
       <div class="email-text" id="email-text">eyus00@duck.com</div>
     </div>
 
@@ -44,7 +44,7 @@
     </ul>
   </div>
 
-  <div class="notification" id="notification"></div>
+  <div class="notification" id="notification">Email copied to clipboard!</div>
 
   <script src="js/script.js"></script>
 </body>

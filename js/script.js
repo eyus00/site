@@ -1,42 +1,45 @@
 const root = document.documentElement;
-const toggle = document.getElementById("theme-toggle");
-const logo = document.getElementById("logo");
-const favicon = document.getElementById("favicon");
-
+const themeToggle = document.getElementById("theme-toggle");
 const username = document.getElementById("username");
 const emailText = document.getElementById("email-text");
 const notification = document.getElementById("notification");
+const logo = document.getElementById("logo");
 
-const logos = {
-  light: "media/Dark_Maroon_No_BG.svg",
-  dark: "media/Light_Grey_No_BG.svg"
-};
+/* ===============================
+   THEME HANDLING
+================================ */
 
 function applyTheme(theme) {
   root.setAttribute("data-theme", theme);
-  toggle.checked = theme === "light";
+  themeToggle.checked = theme === "light";
 
-  logo.src = logos[theme];
-  favicon.href = logos[theme];
-
-  localStorage.setItem("theme", theme);
+  logo.src =
+    theme === "light"
+      ? "media/Dark_Maroon_No_BG.svg"
+      : "media/Light_Grey_No_BG.svg";
 }
 
-/* Load theme */
-const saved = localStorage.getItem("theme");
-if (saved) {
-  applyTheme(saved);
+// Load saved theme or system preference
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme) {
+  applyTheme(savedTheme);
 } else {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   applyTheme(prefersDark ? "dark" : "light");
 }
 
-/* Toggle */
-toggle.addEventListener("change", () => {
-  applyTheme(toggle.checked ? "light" : "dark");
+// Manual toggle
+themeToggle.addEventListener("change", () => {
+  const newTheme = themeToggle.checked ? "light" : "dark";
+  applyTheme(newTheme);
+  localStorage.setItem("theme", newTheme);
 });
 
-/* Clipboard */
+/* ===============================
+   CLIPBOARD HANDLING
+================================ */
+
 function showNotification(text) {
   notification.textContent = text;
   notification.classList.add("show");
@@ -45,10 +48,10 @@ function showNotification(text) {
 
 username.addEventListener("click", () => {
   navigator.clipboard.writeText(username.textContent)
-    .then(() => showNotification("Username copied!"));
+    .then(() => showNotification("Username copied to clipboard!"));
 });
 
 emailText.addEventListener("click", () => {
   navigator.clipboard.writeText(emailText.textContent)
-    .then(() => showNotification("Email copied!"));
+    .then(() => showNotification("Email copied to clipboard!"));
 });

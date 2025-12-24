@@ -1,18 +1,14 @@
 :root {
-  --dark-bg: #1a0d0d;
-  --light-bg: #f3f3f3;
-
-  --dark-text: #f3f3f3;
+  --dark-bg: #120909;
+  --light-bg: #f3f3f3; /* NEW light mode background */
+  --dark-text: #f5eaea;
   --light-text: #1a0d0d;
-
-  --maroon: #1a0d0d;
-  --maroon-hover: #2a1616;
-
-  --transition: all 0.2s ease-in-out;
-  --font: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --accent: #751a1a;
+  --accent-hover: #9e2525;
+  --main-transition: all 0.2s ease-in-out;
+  --font-clean: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Reset */
 * {
   box-sizing: border-box;
 }
@@ -20,16 +16,16 @@
 html, body {
   margin: 0;
   padding: 0;
+  font-family: var(--font-clean);
   height: 100%;
-  font-family: var(--font);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  transition: var(--transition);
+  transition: var(--main-transition);
 }
 
-/* ================= THEME ================= */
+/* ===== THEME ===== */
 
 html[data-theme="dark"] body {
   background: var(--dark-bg);
@@ -41,13 +37,14 @@ html[data-theme="light"] body {
   color: var(--light-text);
 }
 
-/* ================= LAYOUT ================= */
+/* ===== LAYOUT ===== */
 
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  width: 100%;
   padding: 1rem;
 }
 
@@ -58,30 +55,31 @@ html[data-theme="light"] body {
   gap: 1rem;
 }
 
-.logo {
-  width: 90px;
+.logo-img {
+  width: 64px;
   height: auto;
 }
 
-/* ================= TEXT ================= */
+/* Typography */
 
 h1 {
-  margin: 0;
   font-size: 1.5rem;
+  margin: 0;
   cursor: pointer;
 }
 
 a {
   color: inherit;
-  font-weight: bold;
   text-decoration: underline;
-  transition: color 0.2s ease;
-}
-a:hover {
-  color: var(--maroon-hover);
+  font-weight: bold;
+  transition: var(--main-transition);
 }
 
-/* ================= EMAIL ================= */
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* Email */
 
 .email-container {
   display: flex;
@@ -91,25 +89,25 @@ a:hover {
 
 .email {
   padding: 0.75rem 1.25rem;
-  font-size: 1.1rem;
+  background-color: var(--accent);
+  color: #fff;
   border: none;
   border-radius: 3px;
+  font-size: 1.1rem;
   cursor: pointer;
-  background: var(--maroon);
-  color: #fff;
-  transition: var(--transition);
 }
+
 .email:hover {
-  background: var(--maroon-hover);
+  background-color: var(--accent-hover);
 }
 
 .email-text {
   margin-top: 0.5rem;
   cursor: pointer;
-  opacity: 0.8;
+  font-size: 1rem;
 }
 
-/* ================= LINKS ================= */
+/* Links */
 
 ul {
   list-style: none;
@@ -118,6 +116,7 @@ ul {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 ul li {
@@ -130,10 +129,29 @@ ul li:nth-child(-n+3)::after {
   right: -1.25rem;
 }
 
-/* ================= THEME SWITCH ================= */
+/* Notification */
+
+.notification {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.notification.show {
+  opacity: 1;
+}
+
+/* Theme Switch */
 
 .theme-switcher {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .theme-toggle {
@@ -143,44 +161,32 @@ ul li:nth-child(-n+3)::after {
 .theme-toggle + label {
   width: 40px;
   height: 20px;
-  background: var(--maroon);
+  background-color: #551010;
   border-radius: 10px;
   position: relative;
   cursor: pointer;
 }
 
 .theme-toggle + label::after {
-  content: "";
+  content: '';
+  position: absolute;
   width: 16px;
   height: 16px;
-  background: #fff;
+  background-color: #fff;
   border-radius: 50%;
-  position: absolute;
   top: 2px;
   left: 2px;
-  transition: var(--transition);
+  transition: var(--main-transition);
 }
 
 .theme-toggle:checked + label::after {
   left: 22px;
 }
 
-/* ================= NOTIFICATION ================= */
+/* Responsive */
 
-.notification {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--maroon);
-  color: #fff;
-  padding: 0.75rem 1.25rem;
-  border-radius: 5px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.notification.show {
-  opacity: 1;
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.25rem;
+  }
 }
