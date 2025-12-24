@@ -7,11 +7,7 @@ const favicon = document.getElementById("favicon");
 
 /* ===============================
    THEME HANDLING + FAVICON
-   Ranking system:
-   1. Saved user preference
-   2. System mode (if no saved preference)
 ================================ */
-
 const lightLogo = "media/1.svg"; // light logo (for dark theme)
 const darkLogo = "media/2.svg";  // dark logo (for light theme)
 
@@ -53,7 +49,6 @@ themeToggle.addEventListener("change", () => {
 /* ===============================
    CLIPBOARD HANDLING
 ================================ */
-
 function showNotification(text) {
   notification.textContent = text;
   notification.classList.add("show");

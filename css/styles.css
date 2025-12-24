@@ -1,6 +1,6 @@
 :root {
-  --dark-bg: #1a0d0d; /* updated dark background */
-  --light-bg: #f3f3f3; /* updated light background */
+  --dark-bg: #1a0d0d;
+  --light-bg: #f3f3f3;
   --dark-text: #f5eaea;
   --light-text: #1a0d0d;
   --accent: #751a1a;
@@ -28,7 +28,6 @@ html, body {
 }
 
 /* ===== THEME ===== */
-
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) body {
     background: var(--dark-bg);
@@ -66,7 +65,6 @@ html[data-theme="light"] .email-text {
 }
 
 /* ===== LAYOUT ===== */
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -84,8 +82,7 @@ html[data-theme="light"] .email-text {
   gap: 1.25rem;
 }
 
-/* ===== LOGO (120px) ===== */
-
+/* ===== LOGO ===== */
 .logo {
   position: relative;
   width: 120px;
@@ -98,7 +95,6 @@ html[data-theme="light"] .email-text {
   display: none;
 }
 
-/* Logo visibility based on theme */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) .logo-light-on-dark {
     display: block;
@@ -125,7 +121,13 @@ html[data-theme="light"] .logo-light-on-dark {
   display: none;
 }
 
-/* Typography */
+/* ===== TYPOGRAPHY ===== */
+/* Username and email use Instrument Serif */
+#username,
+.email-text {
+  font-family: 'Instrument Serif', serif;
+}
+
 h1 {
   font-size: 1.5rem;
   margin: 0;
@@ -178,10 +180,9 @@ ul li {
 ul li a {
   text-decoration: underline;
   font-weight: bold;
-  color: inherit; /* preserve text color */
+  color: inherit;
 }
 
-/* Dots between links */
 ul li:nth-child(1)::after,
 ul li:nth-child(2)::after,
 ul li:nth-child(3)::after {
