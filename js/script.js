@@ -3,34 +3,27 @@ const themeToggle = document.getElementById("theme-toggle");
 const username = document.getElementById("username");
 const emailText = document.getElementById("email-text");
 const notification = document.getElementById("notification");
-const logo = document.getElementById("logo");
 
 /* ===============================
    THEME HANDLING
 ================================ */
 
-function applyTheme(theme) {
-  root.setAttribute("data-theme", theme);
-  themeToggle.checked = theme === "light";
-
-  logo.src =
-    theme === "light"
-      ? "media/Dark_Maroon_No_BG.svg"
-      : "media/Light_Grey_Logo_No_BG.svg";
-}
-
 const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme) {
-  applyTheme(savedTheme);
+  root.setAttribute("data-theme", savedTheme);
+  themeToggle.checked = savedTheme === "light";
 } else {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  applyTheme(prefersDark ? "dark" : "light");
+  const systemTheme = prefersDark ? "dark" : "light";
+
+  root.setAttribute("data-theme", systemTheme);
+  themeToggle.checked = systemTheme === "light";
 }
 
 themeToggle.addEventListener("change", () => {
   const newTheme = themeToggle.checked ? "light" : "dark";
-  applyTheme(newTheme);
+  root.setAttribute("data-theme", newTheme);
   localStorage.setItem("theme", newTheme);
 });
 
@@ -46,10 +39,12 @@ function showNotification(text) {
 
 username.addEventListener("click", () => {
   navigator.clipboard.writeText(username.textContent)
-    .then(() => showNotification("Username copied to clipboard!"));
+    .then(() => showNotification("Username copied to clipboard!"))
+    .catch(console.error);
 });
 
 emailText.addEventListener("click", () => {
   navigator.clipboard.writeText(emailText.textContent)
-    .then(() => showNotification("Email copied to clipboard!"));
+    .then(() => showNotification("Email copied to clipboard!"))
+    .catch(console.error);
 });

@@ -1,6 +1,6 @@
 :root {
   --dark-bg: #120909;
-  --light-bg: #f3f3f3;
+  --light-bg: #f8f3f3;
   --dark-text: #f5eaea;
   --light-text: #1a0d0d;
   --accent: #751a1a;
@@ -23,19 +23,46 @@ html, body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-size: 1rem;
   transition: var(--main-transition);
 }
 
 /* ===== THEME ===== */
 
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) body {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  html:not([data-theme="light"]) .email-text {
+    color: #cbb;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) body {
+    background: var(--light-bg);
+    color: var(--light-text);
+  }
+  html:not([data-theme="dark"]) .email-text {
+    color: #665;
+  }
+}
+
 html[data-theme="dark"] body {
   background: var(--dark-bg);
   color: var(--dark-text);
+}
+html[data-theme="dark"] .email-text {
+  color: #cbb;
 }
 
 html[data-theme="light"] body {
   background: var(--light-bg);
   color: var(--light-text);
+}
+html[data-theme="light"] .email-text {
+  color: #665;
 }
 
 /* ===== LAYOUT ===== */
@@ -45,6 +72,7 @@ html[data-theme="light"] body {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  max-width: 1200px;
   width: 100%;
   padding: 1rem;
 }
@@ -56,16 +84,49 @@ html[data-theme="light"] body {
   gap: 1rem;
 }
 
-/* ✅ Correct SVG sizing */
-.logo-img {
-  width: 96px;
-  height: auto;
-  max-width: 100%;
-  display: block;
+/* ===== LOGO ===== */
+
+.logo {
+  position: relative;
+  width: 80px;
+  height: 80px;
 }
 
-/* Typography */
+.logo-img {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
 
+/* System preference */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .logo-dark {
+    display: block;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) .logo-light {
+    display: block;
+  }
+}
+
+/* Explicit overrides */
+html[data-theme="dark"] .logo-dark {
+  display: block;
+}
+html[data-theme="dark"] .logo-light {
+  display: none;
+}
+
+html[data-theme="light"] .logo-light {
+  display: block;
+}
+html[data-theme="light"] .logo-dark {
+  display: none;
+}
+
+/* Typography and links */
 h1 {
   font-size: 1.5rem;
   margin: 0;
@@ -74,23 +135,14 @@ h1 {
 
 a {
   color: inherit;
-  text-decoration: underline;
+  text-decoration: none;
   font-weight: bold;
+  position: relative;
   transition: var(--main-transition);
-}
-
-a:hover {
-  color: var(--accent-hover);
+  font-size: 1rem;
 }
 
 /* Email */
-
-.email-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .email {
   padding: 0.75rem 1.25rem;
   background-color: var(--accent);
@@ -99,42 +151,51 @@ a:hover {
   border-radius: 3px;
   font-size: 1.1rem;
   cursor: pointer;
+  transition: var(--main-transition);
+  margin-bottom: 0.75rem;
 }
-
 .email:hover {
   background-color: var(--accent-hover);
 }
 
+.email-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .email-text {
-  margin-top: 0.5rem;
-  cursor: pointer;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 /* Links */
-
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
+  justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 ul li {
   position: relative;
 }
 
-ul li:nth-child(-n+3)::after {
+ul li a {
+  text-decoration: underline;
+}
+
+ul li:nth-child(1)::after,
+ul li:nth-child(2)::after,
+ul li:nth-child(3)::after {
   content: "•";
   position: absolute;
   right: -1.25rem;
 }
 
 /* Notification */
-
 .notification {
   position: fixed;
   bottom: 10px;
@@ -147,13 +208,11 @@ ul li:nth-child(-n+3)::after {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .notification.show {
   opacity: 1;
 }
 
-/* Theme Switch */
-
+/* Theme Switcher */
 .theme-switcher {
   margin-bottom: 1.25rem;
 }
@@ -168,33 +227,26 @@ ul li:nth-child(-n+3)::after {
   background-color: #551010;
   border-radius: 10px;
   position: relative;
+  display: inline-block;
   cursor: pointer;
 }
 
 .theme-toggle + label::after {
   content: '';
-  position: absolute;
   width: 16px;
   height: 16px;
   background-color: #fff;
   border-radius: 50%;
+  position: absolute;
   top: 2px;
   left: 2px;
   transition: var(--main-transition);
 }
 
-.theme-toggle:checked + label::after {
-  left: 22px;
+.theme-toggle:checked + label {
+  background-color: var(--accent);
 }
 
-/* Responsive */
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.25rem;
-  }
-
-  .logo-img {
-    width: 72px;
-  }
+.theme-toggle:checked + label::after {
+  left: 22px;
 }
