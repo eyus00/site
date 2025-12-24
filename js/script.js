@@ -7,15 +7,25 @@ const favicon = document.getElementById("favicon");
 
 /* ===============================
    THEME HANDLING + FAVICON
+   Ranking system:
+   1. Saved user preference
+   2. System mode (if no saved preference)
 ================================ */
 
-const lightLogo = "media/1.svg"; // light logo (used for dark theme)
-const darkLogo = "media/2.svg";  // dark logo (used for light theme)
+const lightFavicon32 = "media/2_32.png";  // light logo for dark theme
+const lightFavicon180 = "media/2_180.png";
+const darkFavicon32 = "media/1_32.png";   // dark logo for light theme
+const darkFavicon180 = "media/1_180.png";
 
 function updateTheme(theme) {
-  // theme: "light" or "dark"
   root.setAttribute("data-theme", theme);
-  favicon.href = theme === "light" ? darkLogo : lightLogo;
+
+  // Update favicon
+  favicon.href = theme === "light" ? darkFavicon32 : lightFavicon32;
+
+  // Update Apple touch icon for iOS
+  const appleTouch = document.querySelector('link[rel="apple-touch-icon"]');
+  if (appleTouch) appleTouch.href = theme === "light" ? darkFavicon180 : lightFavicon180;
 
   // Show correct logo on page
   document.querySelector(".logo-light-on-dark").style.display = theme === "dark" ? "block" : "none";
@@ -30,7 +40,6 @@ let savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
   updateTheme(savedTheme);
 } else {
-  // No saved preference, use system mode
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const systemTheme = prefersDark ? "dark" : "light";
   updateTheme(systemTheme);
