@@ -15,9 +15,9 @@ const favicon = document.getElementById("favicon");
 const lightLogo = "media/1.svg"; // light logo (for dark theme)
 const darkLogo = "media/2.svg";  // dark logo (for light theme)
 
-// PNG favicons
-const lightFavicon = "media/1.png"; // for dark theme
-const darkFavicon = "media/2.png";  // for light theme
+// ICO favicons
+const lightFavicon = "media/1.ico"; // for dark theme
+const darkFavicon = "media/2.ico";  // for light theme
 
 function updateTheme(theme) {
   root.setAttribute("data-theme", theme);
