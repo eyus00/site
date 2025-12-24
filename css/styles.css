@@ -1,6 +1,6 @@
 :root {
   --dark-bg: #120909;
-  --light-bg: #f3f3f3; /* NEW light mode background */
+  --light-bg: #f3f3f3;
   --dark-text: #f5eaea;
   --light-text: #1a0d0d;
   --accent: #751a1a;
@@ -9,6 +9,7 @@
   --font-clean: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
+/* Reset */
 * {
   box-sizing: border-box;
 }
@@ -55,9 +56,12 @@ html[data-theme="light"] body {
   gap: 1rem;
 }
 
+/* ✅ Correct SVG sizing */
 .logo-img {
-  width: 64px;
+  width: 96px;
   height: auto;
+  max-width: 100%;
+  display: block;
 }
 
 /* Typography */
@@ -188,5 +192,9 @@ ul li:nth-child(-n+3)::after {
 @media (max-width: 480px) {
   h1 {
     font-size: 1.25rem;
+  }
+
+  .logo-img {
+    width: 72px;
   }
 }

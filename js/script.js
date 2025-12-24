@@ -16,10 +16,9 @@ function applyTheme(theme) {
   logo.src =
     theme === "light"
       ? "media/Dark_Maroon_No_BG.svg"
-      : "media/Light_Grey_No_BG.svg";
+      : "media/Light_Grey_Logo_No_BG.svg";
 }
 
-// Load saved theme or system preference
 const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme) {
@@ -29,7 +28,6 @@ if (savedTheme) {
   applyTheme(prefersDark ? "dark" : "light");
 }
 
-// Manual toggle
 themeToggle.addEventListener("change", () => {
   const newTheme = themeToggle.checked ? "light" : "dark";
   applyTheme(newTheme);
