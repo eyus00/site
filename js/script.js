@@ -9,36 +9,38 @@ const favicon = document.getElementById("favicon");
    THEME HANDLING + FAVICON
 ================================ */
 
-// Paths for logos
-const lightLogo = "media/1.svg"; // light logo (used in dark mode)
-const darkLogo = "media/2.svg";  // dark logo (used in light mode)
+const lightLogo = "media/1.svg"; // light logo (used for dark theme)
+const darkLogo = "media/2.svg";  // dark logo (used for light theme)
 
-function updateFavicon(theme) {
+function updateTheme(theme) {
   // theme: "light" or "dark"
+  root.setAttribute("data-theme", theme);
   favicon.href = theme === "light" ? darkLogo : lightLogo;
+
+  // Show correct logo on page
+  document.querySelector(".logo-light-on-dark").style.display = theme === "dark" ? "block" : "none";
+  document.querySelector(".logo-dark-on-light").style.display = theme === "light" ? "block" : "none";
+
+  // Update switcher
+  themeToggle.checked = theme === "light";
 }
 
-// Load saved theme or fall back to system preference
-const savedTheme = localStorage.getItem("theme");
-
-let currentTheme;
+// Determine initial theme
+let savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
-  currentTheme = savedTheme;
+  updateTheme(savedTheme);
 } else {
+  // No saved preference, use system mode
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  currentTheme = prefersDark ? "dark" : "light";
+  const systemTheme = prefersDark ? "dark" : "light";
+  updateTheme(systemTheme);
 }
 
-root.setAttribute("data-theme", currentTheme);
-themeToggle.checked = currentTheme === "light";
-updateFavicon(currentTheme);
-
-// Save manual toggle and update favicon
+// Save manual toggle
 themeToggle.addEventListener("change", () => {
   const newTheme = themeToggle.checked ? "light" : "dark";
-  root.setAttribute("data-theme", newTheme);
   localStorage.setItem("theme", newTheme);
-  updateFavicon(newTheme);
+  updateTheme(newTheme);
 });
 
 /* ===============================
