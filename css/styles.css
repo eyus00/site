@@ -71,7 +71,7 @@ html[data-theme="light"] .email-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem; /* reduce overall gap for better spacing */
+  gap: 2rem;
   max-width: 1200px;
   width: 100%;
   padding: 1rem;
@@ -81,15 +81,15 @@ html[data-theme="light"] .email-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem; /* smaller space between logo and username */
+  gap: 1.25rem;
 }
 
-/* ===== LOGO (BIGGER & FIXED) ===== */
+/* ===== LOGO (FIXED & BIGGER) ===== */
 
 .logo {
   position: relative;
-  width: 200px;  /* increased size */
-  height: 200px; /* increased size */
+  width: 140px;
+  height: 140px;
 }
 
 .logo-img {
@@ -98,7 +98,7 @@ html[data-theme="light"] .email-text {
   display: none;
 }
 
-/* System preference */
+/* Logo visibility based on theme */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) .logo-light-on-dark {
     display: block;
@@ -111,7 +111,6 @@ html[data-theme="light"] .email-text {
   }
 }
 
-/* Explicit overrides */
 html[data-theme="dark"] .logo-light-on-dark {
   display: block;
 }
@@ -133,7 +132,7 @@ h1 {
   cursor: pointer;
 }
 
-/* Email */
+/* ===== EMAIL ===== */
 .email {
   padding: 0.75rem 1.25rem;
   background-color: var(--accent);
@@ -142,6 +141,8 @@ h1 {
   border-radius: 3px;
   font-size: 1.1rem;
   cursor: pointer;
+  margin-bottom: 0.75rem;
+  transition: var(--main-transition);
 }
 .email:hover {
   background-color: var(--accent-hover);
@@ -154,51 +155,47 @@ h1 {
 }
 .email-text {
   cursor: pointer;
+  font-size: 1rem;
 }
 
 /* ===== SOCIAL LINKS ===== */
-ul.social-links {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
   justify-content: center;
-  max-width: 300px; /* control row wrapping on mobile */
+  gap: 2rem;
+  flex-wrap: wrap; /* allow wrapping on smaller screens */
 }
 
-ul.social-links li {
-  flex: 1 1 40%; /* 2 items per row on small screens */
-  text-align: center;
+ul li {
   position: relative;
+  width: auto;
+  margin-bottom: 0;
+}
+
+ul li a {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 /* Dots between links */
-ul.social-links li:nth-child(odd)::after {
+ul li:nth-child(1)::after,
+ul li:nth-child(2)::after,
+ul li:nth-child(3)::after {
   content: "•";
   position: absolute;
-  right: -0.75rem;
+  right: -1.25rem;
+  top: 0;
+  font-size: 1rem;
 }
-ul.social-links li:nth-child(even)::after {
+
+ul li:nth-child(4)::after {
   content: none;
 }
 
-/* Larger screens: single row */
-@media (min-width: 768px) {
-  ul.social-links {
-    flex-wrap: nowrap;
-    max-width: none;
-  }
-  ul.social-links li {
-    flex: unset;
-  }
-  ul.social-links li:nth-child(odd)::after {
-    right: -1.25rem;
-  }
-}
-
-/* Notification */
+/* ===== NOTIFICATION ===== */
 .notification {
   position: fixed;
   bottom: 10px;
@@ -215,9 +212,9 @@ ul.social-links li:nth-child(even)::after {
   opacity: 1;
 }
 
-/* Theme Switcher */
+/* ===== THEME SWITCHER ===== */
 .theme-switcher {
-  margin-bottom: 0.75rem; /* reduce space above logo */
+  margin-bottom: 1.25rem;
 }
 
 .theme-toggle {
@@ -252,4 +249,34 @@ ul.social-links li:nth-child(even)::after {
 
 .theme-toggle:checked + label::after {
   left: 22px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  ul {
+    gap: 1rem;
+  }
+  ul li {
+    width: 40%; /* two items per row */
+    margin-bottom: 1rem;
+  }
+  /* Adjust dots for 2x2 layout */
+  ul li:nth-child(1)::after,
+  ul li:nth-child(3)::after {
+    content: "•";
+    right: -0.75rem;
+  }
+  ul li:nth-child(2)::after,
+  ul li:nth-child(4)::after {
+    content: none;
+  }
+}
+
+@media (max-width: 480px) {
+  ul li {
+    width: 40%;
+  }
+  h1 {
+    font-size: 1.25rem;
+  }
 }
