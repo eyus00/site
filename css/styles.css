@@ -56,19 +56,11 @@ html[data-theme="light"] body {
   gap: 1rem;
 }
 
-<<<<<<< HEAD
 /* ✅ Correct SVG sizing */
 .logo-img {
   width: 96px;
   height: auto;
   max-width: 100%;
-=======
-/* ✅ FIXED SVG SCALING */
-.logo-img {
-  width: 64px;        /* controlled size */
-  max-width: 100%;
-  height: auto;
->>>>>>> 33bb4ce2debc4d5efd1f5c6effef3088e09124ba
   display: block;
 }
 
@@ -203,10 +195,6 @@ ul li:nth-child(-n+3)::after {
   }
 
   .logo-img {
-<<<<<<< HEAD
     width: 72px;
-=======
-    width: 48px; /* smaller logo on mobile */
->>>>>>> 33bb4ce2debc4d5efd1f5c6effef3088e09124ba
   }
 }
