@@ -81,15 +81,15 @@ html[data-theme="light"] .email-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-/* ===== LOGO ===== */
+/* ===== LOGO (FIXED & BIGGER) ===== */
 
 .logo {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 140px;
+  height: 140px;
 }
 
 .logo-img {
@@ -100,33 +100,33 @@ html[data-theme="light"] .email-text {
 
 /* System preference */
 @media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .logo-dark {
+  html:not([data-theme="light"]) .logo-light-on-dark {
     display: block;
   }
 }
 
 @media (prefers-color-scheme: light) {
-  html:not([data-theme="dark"]) .logo-light {
+  html:not([data-theme="dark"]) .logo-dark-on-light {
     display: block;
   }
 }
 
 /* Explicit overrides */
-html[data-theme="dark"] .logo-dark {
+html[data-theme="dark"] .logo-light-on-dark {
   display: block;
 }
-html[data-theme="dark"] .logo-light {
+html[data-theme="dark"] .logo-dark-on-light {
   display: none;
 }
 
-html[data-theme="light"] .logo-light {
+html[data-theme="light"] .logo-dark-on-light {
   display: block;
 }
-html[data-theme="light"] .logo-dark {
+html[data-theme="light"] .logo-light-on-dark {
   display: none;
 }
 
-/* Typography and links */
+/* Typography */
 h1 {
   font-size: 1.5rem;
   margin: 0;
@@ -137,9 +137,7 @@ a {
   color: inherit;
   text-decoration: none;
   font-weight: bold;
-  position: relative;
   transition: var(--main-transition);
-  font-size: 1rem;
 }
 
 /* Email */
@@ -151,7 +149,6 @@ a {
   border-radius: 3px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: var(--main-transition);
   margin-bottom: 0.75rem;
 }
 .email:hover {
@@ -164,7 +161,6 @@ a {
   align-items: center;
 }
 .email-text {
-  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -174,17 +170,12 @@ ul {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
 }
 
 ul li {
   position: relative;
-}
-
-ul li a {
-  text-decoration: underline;
 }
 
 ul li:nth-child(1)::after,
