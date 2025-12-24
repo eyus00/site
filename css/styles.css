@@ -125,9 +125,10 @@ html[data-theme="light"] .logo-light-on-dark {
 
 /* ===== TYPOGRAPHY ===== */
 
-/* Instrument Serif — Username & Email */
+/* Instrument Serif — base */
 #username,
-.email-text {
+.email-text,
+.notification {
   font-family: "Instrument Serif", serif;
   font-weight: 400;
   font-style: normal;
@@ -156,10 +157,16 @@ h1 {
   font-size: 1.1rem;
   cursor: pointer;
   transition: var(--main-transition);
+
+  /* ensure smooth font change */
+  font-style: normal;
 }
 
+/* Hover: italic Instrument Serif */
 .email:hover {
   background-color: var(--accent-hover);
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
 }
 
 .email-text {
@@ -182,9 +189,12 @@ ul li {
   position: relative;
 }
 
+/* Instrument Serif — italic for socials */
 ul li a {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: italic;
   color: inherit;
-  font-weight: bold;
   text-decoration: underline;
 }
 
