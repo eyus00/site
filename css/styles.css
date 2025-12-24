@@ -84,11 +84,11 @@ html[data-theme="light"] .email-text {
   gap: 1.25rem;
 }
 
-/* ===== LOGO (SLIGHTLY SMALLER) ===== */
+/* ===== LOGO (120px) ===== */
 
 .logo {
   position: relative;
-  width: 120px; /* slightly smaller */
+  width: 120px;
   height: 120px;
 }
 
@@ -166,7 +166,7 @@ ul {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  flex-wrap: wrap; /* allow wrapping on smaller screens */
+  flex-wrap: wrap;
 }
 
 ul li {
@@ -178,7 +178,7 @@ ul li {
 ul li a {
   text-decoration: underline;
   font-weight: bold;
-  color: inherit; /* fix blue links */
+  color: inherit; /* ensure links keep site color */
 }
 
 /* Dots between links */
@@ -261,7 +261,6 @@ ul li:nth-child(4)::after {
     width: 40%; /* two items per row */
     margin-bottom: 1rem;
   }
-  /* Adjust dots for 2x2 layout */
   ul li:nth-child(1)::after,
   ul li:nth-child(3)::after {
     content: "•";
