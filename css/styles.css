@@ -84,12 +84,12 @@ html[data-theme="light"] .email-text {
   gap: 1.25rem;
 }
 
-/* ===== LOGO (FIXED & BIGGER) ===== */
+/* ===== LOGO (SLIGHTLY SMALLER) ===== */
 
 .logo {
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: 120px; /* slightly smaller */
+  height: 120px;
 }
 
 .logo-img {
@@ -178,6 +178,7 @@ ul li {
 ul li a {
   text-decoration: underline;
   font-weight: bold;
+  color: inherit; /* fix blue links */
 }
 
 /* Dots between links */
