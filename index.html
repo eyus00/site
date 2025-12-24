@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
   <title>eyus00's site</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Serif+Display:ital@0;1&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!-- Instrument Serif (CORRECT) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-  <!-- Favicon placeholder, updated by JS -->
+  <!-- Favicon -->
   <link id="favicon" rel="icon" href="media/2.svg">
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <div class="wrapper">
     <div class="theme-switcher">
@@ -22,25 +26,20 @@
 
     <div class="logo-username-container">
       <div class="logo">
-        <!-- Light logo for dark theme -->
-        <img
-          src="media/1.svg"
-          alt="eyus00 logo light"
-          class="logo-img logo-light-on-dark"
-        />
-        <!-- Dark logo for light theme -->
-        <img
-          src="media/2.svg"
-          alt="eyus00 logo dark"
-          class="logo-img logo-dark-on-light"
-        />
+        <img src="media/1.svg" class="logo-img logo-light-on-dark">
+        <img src="media/2.svg" class="logo-img logo-dark-on-light">
       </div>
+
       <h1 id="username">@eyus00</h1>
     </div>
 
     <div class="email-container">
-      <button class="email" onclick="window.location.href='mailto:eyus00@duck.com'">email</button>
-      <div class="email-text" id="email-text">eyus00@duck.com</div>
+      <button class="email" onclick="window.location.href='mailto:eyus00@duck.com'">
+        email
+      </button>
+      <div class="email-text" id="email-text">
+        eyus00@duck.com
+      </div>
     </div>
 
     <ul>
@@ -51,7 +50,7 @@
     </ul>
   </div>
 
-  <div class="notification" id="notification">Email copied to clipboard!</div>
+  <div class="notification" id="notification"></div>
 
   <script src="js/script.js"></script>
 </body>

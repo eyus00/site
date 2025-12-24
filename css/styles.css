@@ -9,7 +9,7 @@
   --font-clean: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Reset */
+/* ===== RESET ===== */
 * {
   box-sizing: border-box;
 }
@@ -17,13 +17,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-clean);
   height: 100%;
+  font-family: var(--font-clean);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 1rem;
   transition: var(--main-transition);
 }
 
@@ -52,6 +51,7 @@ html[data-theme="dark"] body {
   background: var(--dark-bg);
   color: var(--dark-text);
 }
+
 html[data-theme="dark"] .email-text {
   color: #cbb;
 }
@@ -60,6 +60,7 @@ html[data-theme="light"] body {
   background: var(--light-bg);
   color: var(--light-text);
 }
+
 html[data-theme="light"] .email-text {
   color: #665;
 }
@@ -70,8 +71,8 @@ html[data-theme="light"] .email-text {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  max-width: 1200px;
   width: 100%;
+  max-width: 1200px;
   padding: 1rem;
 }
 
@@ -95,6 +96,7 @@ html[data-theme="light"] .email-text {
   display: none;
 }
 
+/* Logo switching */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) .logo-light-on-dark {
     display: block;
@@ -122,42 +124,47 @@ html[data-theme="light"] .logo-light-on-dark {
 }
 
 /* ===== TYPOGRAPHY ===== */
-/* Username and email use Instrument Serif */
+
+/* Instrument Serif — Username & Email */
 #username,
 .email-text {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 h1 {
-  font-size: 1.5rem;
   margin: 0;
+  font-size: 1.6rem;
   cursor: pointer;
 }
 
 /* ===== EMAIL ===== */
+.email-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .email {
   padding: 0.75rem 1.25rem;
+  margin-bottom: 0.75rem;
   background-color: var(--accent);
   color: #fff;
   border: none;
   border-radius: 3px;
   font-size: 1.1rem;
   cursor: pointer;
-  margin-bottom: 0.75rem;
   transition: var(--main-transition);
 }
+
 .email:hover {
   background-color: var(--accent-hover);
 }
 
-.email-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .email-text {
+  font-size: 1.05rem;
   cursor: pointer;
-  font-size: 1rem;
 }
 
 /* ===== SOCIAL LINKS ===== */
@@ -173,24 +180,21 @@ ul {
 
 ul li {
   position: relative;
-  width: auto;
-  margin-bottom: 0;
 }
 
 ul li a {
-  text-decoration: underline;
-  font-weight: bold;
   color: inherit;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
+/* Dots */
 ul li:nth-child(1)::after,
 ul li:nth-child(2)::after,
 ul li:nth-child(3)::after {
   content: "•";
   position: absolute;
   right: -1.25rem;
-  top: 0;
-  font-size: 1rem;
 }
 
 ul li:nth-child(4)::after {
@@ -203,13 +207,14 @@ ul li:nth-child(4)::after {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--accent);
+  background: var(--accent);
   color: #fff;
   padding: 0.75rem 1.25rem;
   border-radius: 5px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
 .notification.show {
   opacity: 1;
 }
@@ -226,18 +231,18 @@ ul li:nth-child(4)::after {
 .theme-toggle + label {
   width: 40px;
   height: 20px;
-  background-color: #551010;
+  background: #551010;
   border-radius: 10px;
   position: relative;
-  display: inline-block;
   cursor: pointer;
+  display: inline-block;
 }
 
 .theme-toggle + label::after {
-  content: '';
+  content: "";
   width: 16px;
   height: 16px;
-  background-color: #fff;
+  background: #fff;
   border-radius: 50%;
   position: absolute;
   top: 2px;
@@ -246,7 +251,7 @@ ul li:nth-child(4)::after {
 }
 
 .theme-toggle:checked + label {
-  background-color: var(--accent);
+  background: var(--accent);
 }
 
 .theme-toggle:checked + label::after {
@@ -258,15 +263,17 @@ ul li:nth-child(4)::after {
   ul {
     gap: 1rem;
   }
+
   ul li {
     width: 40%;
     margin-bottom: 1rem;
   }
+
   ul li:nth-child(1)::after,
   ul li:nth-child(3)::after {
-    content: "•";
     right: -0.75rem;
   }
+
   ul li:nth-child(2)::after,
   ul li:nth-child(4)::after {
     content: none;
@@ -274,10 +281,7 @@ ul li:nth-child(4)::after {
 }
 
 @media (max-width: 480px) {
-  ul li {
-    width: 40%;
-  }
   h1 {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
   }
 }
