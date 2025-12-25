@@ -1,36 +1,54 @@
 const root = document.documentElement;
-const logo = document.querySelector(".logo");
+const themeToggle = document.getElementById("theme-toggle");
 const username = document.getElementById("username");
 const emailText = document.getElementById("email-text");
 const notification = document.getElementById("notification");
 const favicon = document.getElementById("favicon");
 
-const lightFavicon = "media/2.png";
-const darkFavicon = "media/1.png";
+/* ===============================
+   THEME HANDLING + FAVICON
+================================ */
+const lightLogo = "media/1.svg"; // light logo (for dark theme)
+const darkLogo = "media/2.svg";  // dark logo (for light theme)
+
+// PNG favicons
+const lightFavicon = "media/1.png"; // for dark theme
+const darkFavicon = "media/2.png";  // for light theme
 
 function updateTheme(theme) {
   root.setAttribute("data-theme", theme);
-  favicon.href = theme === "light" ? lightFavicon : darkFavicon;
+
+  // Update page logo
+  document.querySelector(".logo-light-on-dark").style.display = theme === "dark" ? "block" : "none";
+  document.querySelector(".logo-dark-on-light").style.display = theme === "light" ? "block" : "none";
+
+  // Update favicon
+  favicon.href = theme === "light" ? darkFavicon : lightFavicon;
+
+  // Update switcher
+  themeToggle.checked = theme === "light";
 }
 
-// Initial theme
-const savedTheme = localStorage.getItem("theme");
+// Determine initial theme
+let savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
   updateTheme(savedTheme);
 } else {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  updateTheme(prefersDark ? "dark" : "light");
+  const systemTheme = prefersDark ? "dark" : "light";
+  updateTheme(systemTheme);
 }
 
-// Toggle theme on logo click
-logo.addEventListener("click", () => {
-  const current = root.getAttribute("data-theme");
-  const next = current === "dark" ? "light" : "dark";
-  localStorage.setItem("theme", next);
-  updateTheme(next);
+// Manual toggle
+themeToggle.addEventListener("change", () => {
+  const newTheme = themeToggle.checked ? "light" : "dark";
+  localStorage.setItem("theme", newTheme);
+  updateTheme(newTheme);
 });
 
-// Clipboard + notification
+/* ===============================
+   CLIPBOARD HANDLING
+================================ */
 function showNotification(text) {
   notification.textContent = text;
   notification.classList.add("show");
@@ -39,10 +57,12 @@ function showNotification(text) {
 
 username.addEventListener("click", () => {
   navigator.clipboard.writeText(username.textContent)
-    .then(() => showNotification("Username copied"));
+    .then(() => showNotification("Username copied to clipboard!"))
+    .catch(console.error);
 });
 
 emailText.addEventListener("click", () => {
   navigator.clipboard.writeText(emailText.textContent)
-    .then(() => showNotification("Email copied"));
+    .then(() => showNotification("Email copied to clipboard!"))
+    .catch(console.error);
 });
