@@ -2,29 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
   <title>eyus00's site</title>
 
-  <!-- Favicon -->
-  <link id="favicon" rel="icon" href="media/2.png">
-
-  <!-- Instrument Serif -->
+  <!-- Instrument Serif (CORRECT) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
+  <!-- Favicon -->
+  <link id="favicon" rel="icon" href="media/2.svg">
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <div class="wrapper">
+    <div class="theme-switcher">
+      <input type="checkbox" id="theme-toggle" class="theme-toggle">
+      <label for="theme-toggle"></label>
+    </div>
 
     <div class="logo-username-container">
       <div class="logo">
-        <!-- Light logo for dark mode -->
-        <img src="media/1.svg" class="logo-img logo-light-on-dark" alt="logo light">
-        <!-- Dark logo for light mode -->
-        <img src="media/2.svg" class="logo-img logo-dark-on-light" alt="logo dark">
+        <img src="media/1.svg" class="logo-img logo-light-on-dark">
+        <img src="media/2.svg" class="logo-img logo-dark-on-light">
       </div>
+
       <h1 id="username">@eyus00</h1>
     </div>
 
@@ -32,7 +37,9 @@
       <button class="email" onclick="window.location.href='mailto:eyus00@duck.com'">
         email
       </button>
-      <div class="email-text" id="email-text">eyus00@duck.com</div>
+      <div class="email-text" id="email-text">
+        eyus00@duck.com
+      </div>
     </div>
 
     <ul>
