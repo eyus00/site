@@ -73,7 +73,7 @@ html[data-theme="light"] .email-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.5rem; /* slightly tighter spacing between sections */
   width: 100%;
   max-width: 1200px;
   padding: 1rem;
@@ -83,7 +83,7 @@ html[data-theme="light"] .email-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem; /* matches email spacing */
+  gap: 0.75rem; /* reduced gap to bring logo and username closer */
 }
 
 /* ===== LOGO ===== */
@@ -149,15 +149,13 @@ ul {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 0.5rem; /* space between items and dots */
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 ul li {
-  display: flex;
-  align-items: center;
+  position: relative;
 }
 
 ul li a {
@@ -165,6 +163,16 @@ ul li a {
   font-style: italic;
   color: inherit;
   text-decoration: underline;
+}
+
+ul li:nth-child(1)::after,
+ul li:nth-child(2)::after,
+ul li:nth-child(3)::after {
+  content: "•";
+  position: absolute;
+  left: calc(100% + 1rem);
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* ===== NOTIFICATION ===== */
@@ -188,13 +196,22 @@ ul li a {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   ul {
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
   ul li {
     width: 40%;
-    justify-content: center;
     margin-bottom: 1rem;
+  }
+
+  ul li:nth-child(2)::after,
+  ul li:nth-child(4)::after {
+    content: none;
+  }
+
+  ul li:nth-child(1)::after,
+  ul li:nth-child(3)::after {
+    left: calc(100% + 0.5rem);
   }
 }
 
