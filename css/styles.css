@@ -1,11 +1,11 @@
 :root {
-  --dark-bg: #1a0d0d;
+  --dark-bg: #751a1a;
   --light-bg: #f4e9e6;
 
   --dark-text: #f5eaea;
   --light-text: #1a0d0d;
 
-  --accent: #751a1a;
+  --accent: #1a0d0d;
   --accent-hover: #9e2525;
 
   --main-transition: all 0.2s ease-in-out;
