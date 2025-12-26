@@ -1,47 +1,40 @@
 const root = document.documentElement;
-const themeToggle = document.getElementById("theme-toggle");
 const username = document.getElementById("username");
 const emailText = document.getElementById("email-text");
 const notification = document.getElementById("notification");
 const favicon = document.getElementById("favicon");
+const logo = document.querySelector(".logo");
 
 /* ===============================
    THEME HANDLING + FAVICON
 ================================ */
-const lightLogo = "media/1.svg"; // light logo (for dark theme)
-const darkLogo = "media/2.svg";  // dark logo (for light theme)
-
-// PNG favicons
 const lightFavicon = "media/1.png"; // for dark theme
 const darkFavicon = "media/2.png";  // for light theme
 
 function updateTheme(theme) {
   root.setAttribute("data-theme", theme);
 
-  // Update page logo
-  document.querySelector(".logo-light-on-dark").style.display = theme === "dark" ? "block" : "none";
-  document.querySelector(".logo-dark-on-light").style.display = theme === "light" ? "block" : "none";
+  document.querySelector(".logo-light-on-dark").style.display =
+    theme === "dark" ? "block" : "none";
+  document.querySelector(".logo-dark-on-light").style.display =
+    theme === "light" ? "block" : "none";
 
-  // Update favicon
   favicon.href = theme === "light" ? darkFavicon : lightFavicon;
-
-  // Update switcher
-  themeToggle.checked = theme === "light";
 }
 
-// Determine initial theme
-let savedTheme = localStorage.getItem("theme");
+// Initial theme
+const savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
   updateTheme(savedTheme);
 } else {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const systemTheme = prefersDark ? "dark" : "light";
-  updateTheme(systemTheme);
+  updateTheme(prefersDark ? "dark" : "light");
 }
 
-// Manual toggle
-themeToggle.addEventListener("change", () => {
-  const newTheme = themeToggle.checked ? "light" : "dark";
+// Toggle theme by clicking logo
+logo.addEventListener("click", () => {
+  const currentTheme = root.getAttribute("data-theme");
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
   localStorage.setItem("theme", newTheme);
   updateTheme(newTheme);
 });
