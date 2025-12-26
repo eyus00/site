@@ -2,24 +2,13 @@ const root = document.documentElement;
 const username = document.getElementById("username");
 const emailText = document.getElementById("email-text");
 const notification = document.getElementById("notification");
-const favicon = document.getElementById("favicon");
 const logo = document.querySelector(".logo");
 
 /* ===============================
-   THEME HANDLING + FAVICON
+   THEME HANDLING
 ================================ */
-const lightFavicon = "media/1.png"; // for dark theme
-const darkFavicon = "media/2.png";  // for light theme
-
 function updateTheme(theme) {
   root.setAttribute("data-theme", theme);
-
-  document.querySelector(".logo-light-on-dark").style.display =
-    theme === "dark" ? "block" : "none";
-  document.querySelector(".logo-dark-on-light").style.display =
-    theme === "light" ? "block" : "none";
-
-  favicon.href = theme === "light" ? darkFavicon : lightFavicon;
 }
 
 // Initial theme
