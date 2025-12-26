@@ -83,7 +83,7 @@ html[data-theme="light"] .email-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem; /* reduced gap to bring logo and username closer */
+  gap: 0.5rem; /* reduced gap to bring logo and username closer */
 }
 
 /* ===== LOGO ===== */
