@@ -73,7 +73,7 @@ html[data-theme="light"] .email-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem; /* vertical spacing between sections */
+  gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
   padding: 1rem;
@@ -83,7 +83,7 @@ html[data-theme="light"] .email-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem; /* same as email spacing */
+  gap: 0.75rem; /* matches email spacing */
 }
 
 /* ===== LOGO ===== */
@@ -149,9 +149,10 @@ ul {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
-  gap: 1rem; /* spacing between items */
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem; /* space between items and dots */
 }
 
 ul li {
@@ -164,12 +165,6 @@ ul li a {
   font-style: italic;
   color: inherit;
   text-decoration: underline;
-}
-
-/* Add inline dot after each social except last */
-ul li:not(:last-child)::after {
-  content: "•";
-  margin-left: 0.5rem; /* space between text and dot */
 }
 
 /* ===== NOTIFICATION ===== */
@@ -198,13 +193,8 @@ ul li:not(:last-child)::after {
 
   ul li {
     width: 40%;
+    justify-content: center;
     margin-bottom: 1rem;
-  }
-
-  /* remove extra dot on last in each line */
-  ul li:nth-child(2)::after,
-  ul li:nth-child(4)::after {
-    content: none;
   }
 }
 
